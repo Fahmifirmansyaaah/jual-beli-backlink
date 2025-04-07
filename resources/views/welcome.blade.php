@@ -569,7 +569,7 @@
             </div>
         </div> --}}
 
-        <div class="container copyright text-center mt-4">
+        <div class="container copyright text-center">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Backlink TNG</strong> <span>All Rights
                     Reserved</span></p>
             <div class="credits">

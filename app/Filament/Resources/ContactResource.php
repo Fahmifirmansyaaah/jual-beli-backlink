@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\TextInputColumn;
 use App\Filament\Resources\ContactResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ContactResource\RelationManagers;
@@ -40,7 +41,7 @@ class ContactResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('email'),
-                TextColumn::make('pesan'),
+                TextInputColumn::make('pesan'),
             ])
             ->filters([
                 //

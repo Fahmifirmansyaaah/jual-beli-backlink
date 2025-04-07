@@ -61,35 +61,11 @@ class PriceResource extends Resource
                 TextColumn::make('harga'),
                 TextColumn::make('fitur')
                     ->label('Fitur')
-                    ->html()
-                    ->formatStateUsing(function ($state) {
-                        if (is_string($state)) {
-                            $decoded = json_decode($state, true);
-                            if (json_last_error() === JSON_ERROR_NONE) {
-                                $state = $decoded;
-                            } else {
-                                return '-';
-                            }
-                        }
+                    ->html(),
+                ViewColumn::make('fitur')
+                    ->view('admin.columns.fitur-list')
+                    ->getStateUsing(fn($record) => $record->fitur),
 
-                        if (!is_array($state) || empty($state)) {
-                            return '-';
-                        }
-
-                        $items = collect($state)
-                            ->map(function ($item) {
-                                $text = $item['value'] ?? '';
-                                $isNegative = str_starts_with($text, '-');
-                                $icon = $isNegative ? 'bi-x' : 'bi-check';
-                                $class = $isNegative ? 'na' : '';
-                                $cleanedText = ltrim($text, '-');
-
-                                return "<li class='{$class}'><i class='bi {$icon}'></i> <span>{$cleanedText}</span></li>";
-                            })
-                            ->implode('');
-
-                        return new HtmlString("<ul class='list-disc pl-5 space-y-1'>{$items}</ul>");
-                    }),
             ])
             ->filters([
                 //
